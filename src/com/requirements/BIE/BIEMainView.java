@@ -6,6 +6,7 @@
 
 package com.requirements.BIE;
 
+import com.requirements.models.BIEMainViewTableModel;
 import javax.swing.JFrame;
 
 /**
@@ -14,12 +15,23 @@ import javax.swing.JFrame;
  */
 public class BIEMainView extends javax.swing.JFrame {
 
+    private BIEMainViewTableModel tableModel;
+
     /**
      * Creates new form BIEMainView
      */
     public BIEMainView() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        this.tableModel = new BIEMainViewTableModel();
+        this.BIEMainViewTable.setModel(tableModel);
+    }
+
+    public void setDummyData() {
+        this.tableModel.addToList("Descripcion", "11:11", "$1337.00");
+        this.BIEMainViewTable.setModel(tableModel);
+        this.BIEMainViewTable.updateUI();
     }
 
     /**
@@ -36,7 +48,7 @@ public class BIEMainView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        BIEMainViewTable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         btnNewIncome = new javax.swing.JButton();
         btnNewEgress = new javax.swing.JButton();
@@ -57,7 +69,7 @@ public class BIEMainView extends javax.swing.JFrame {
 
         jLabel2.setText("Balance del día: $14000");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        BIEMainViewTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -68,7 +80,7 @@ public class BIEMainView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(BIEMainViewTable);
 
         jButton3.setText("Anular Registro");
 
@@ -155,13 +167,13 @@ public class BIEMainView extends javax.swing.JFrame {
 
     private void btnNewIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewIncomeActionPerformed
         // TODO add your handling code here:
-        BIENewRecord newRecord = new BIENewRecord("Ingreso", true);
+        BIENewRecord newRecord = new BIENewRecord("Ingreso", true, this);
         newRecord.setVisible(true);
     }//GEN-LAST:event_btnNewIncomeActionPerformed
 
     private void btnNewEgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewEgressActionPerformed
         // TODO add your handling code here:
-        BIENewRecord newRecord = new BIENewRecord("Egreso", false);
+        BIENewRecord newRecord = new BIENewRecord("Egreso", false, this);
         newRecord.setVisible(true);
     }//GEN-LAST:event_btnNewEgressActionPerformed
 
@@ -173,6 +185,7 @@ public class BIEMainView extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable BIEMainViewTable;
     private javax.swing.JButton btnMonthBalance;
     private javax.swing.JButton btnNewEgress;
     private javax.swing.JButton btnNewIncome;
@@ -182,6 +195,5 @@ public class BIEMainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class BIENewRecord extends javax.swing.JFrame {
 
+    BIEMainView parentView;
+
     /**
      * Creates new form BIENewRecord
      */
@@ -25,12 +27,13 @@ public class BIENewRecord extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     private Boolean recordType;
-    public BIENewRecord(String tipo, Boolean recordType) {
+    public BIENewRecord(String tipo, Boolean recordType, BIEMainView parentView) {
         initComponents();
         this.recordType = recordType;
         this.lblNewRecord.setText("Nuevo "+ tipo);
         DateFormat df3 = DateFormat.getDateInstance(DateFormat.LONG);
         this.lblDate.setText(df3.format(new Date()));
+        this.parentView = parentView;
     }
 
     /**
@@ -143,6 +146,7 @@ public class BIENewRecord extends javax.swing.JFrame {
         if(JOptionPane.showConfirmDialog(null, "¿Es correcto este registro?", "Confirmación", JOptionPane.OK_CANCEL_OPTION) == 0)
         {
             Object[] object = {this.txfMount.getText(), this.txaDescription.getText(), new Date()};
+            this.parentView.setDummyData();
             btnCancelActionPerformed(null);
         }
         else
