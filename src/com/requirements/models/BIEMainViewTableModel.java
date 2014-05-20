@@ -26,33 +26,52 @@ public class BIEMainViewTableModel extends AbstractTableModel {
         return columnNames[column];
     }
 
+    @Override
     public int getRowCount() {
-        return this.list.size();
+        return list.size();
     }
 
+    @Override
     public int getColumnCount() {
         return this.columnNames.length;
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Object item = list.get(rowIndex);
-        Object value = "";
+        BIEData item = (BIEData) this.list.get(rowIndex);
+        Object value = null;
         switch (columnIndex) {
+            case 0:
+                value = item.getDescription();
+                break;
             case 1:
-                value = item;
+                value = item.getTime();
                 break;
             case 2:
-                value = item;
+                value = item.getPlus();
                 break;
             case 3:
-                value = item;
-                break;
-            case 4:
-                value = item;
+                value = item.getQty();
                 break;
         }
 
         return value;
+    }
+
+    /**
+     * @param list the list to set
+     */
+    public void setList(ArrayList list) {
+        this.list = list;
+    }
+
+    public void addToList(String description, String time, String Qty) {
+        BIEData itemToAdd = new BIEData();
+        itemToAdd.setDescription(description);
+        itemToAdd.setPlus("+");
+        itemToAdd.setQty(Qty);
+        itemToAdd.setTime(time);
+        this.list.add(itemToAdd);
     }
 
 }
