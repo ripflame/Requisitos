@@ -153,7 +153,6 @@ public class BIENewRecord extends javax.swing.JFrame {
         {
             btnCancelActionPerformed(null);
         }
- 
     }//GEN-LAST:event_btnAcceptActionPerformed
 
 
