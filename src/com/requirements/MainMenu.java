@@ -6,6 +6,7 @@
 
 package com.requirements;
 import com.requirements.BIE.BIEMainView;
+import com.requirements.COT.COTMainView;
 import com.requirements.CPP.CPPMainView;
 /**
  *
@@ -43,6 +44,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cotización");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cuentas por Pagar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +94,12 @@ public class MainMenu extends javax.swing.JFrame {
         CPPMainView cppMainview = new CPPMainView();
         cppMainview.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        COTMainView cotMainView = new COTMainView();
+        cotMainView.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
