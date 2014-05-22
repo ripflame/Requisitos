@@ -77,6 +77,13 @@ public class COTMainViewTableModel extends AbstractTableModel {
         itemToAdd.setQty("2");
         itemToAdd.setSubtotal("$1337.00");
         this.list.add(itemToAdd);
+
+        itemToAdd = new COTData();
+        itemToAdd.setDescription("Bujía");
+        itemToAdd.setUnitPrice("$100.00");
+        itemToAdd.setQty("8");
+        itemToAdd.setSubtotal("$800.00");
+        this.list.add(itemToAdd);
     }
 
 }
