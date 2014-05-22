@@ -7,6 +7,8 @@
 package com.requirements.COT;
 
 import com.requirements.models.COTMainViewTableModel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -26,6 +28,8 @@ public class COTMainView extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        this.dateLabel.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+
         COTMainViewTableModel tableModel = new COTMainViewTableModel();
         tableModel.addToList();
         this.COTTable.setModel(tableModel);
@@ -36,7 +40,10 @@ public class COTMainView extends javax.swing.JFrame {
         comboBox.addItem("Llanta");
         comboBox.addItem("Bujía");
         column.setCellEditor(new DefaultCellEditor(comboBox));
-        
+
+        this.subtotalLabel.setText("$2137.00");
+        this.IVALabel.setText("$341.92");
+        this.totalLabel.setText("$2478.92");
     }
 
     /**
@@ -52,7 +59,7 @@ public class COTMainView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -65,9 +72,9 @@ public class COTMainView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        subtotalLabel = new javax.swing.JLabel();
+        IVALabel = new javax.swing.JLabel();
+        totalLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +86,7 @@ public class COTMainView extends javax.swing.JFrame {
 
         jLabel4.setText("Fechas");
 
-        jLabel5.setText("Fecha Actual");
+        dateLabel.setText("Fecha Actual");
 
         jLabel6.setText("Modelo");
 
@@ -122,11 +129,11 @@ public class COTMainView extends javax.swing.JFrame {
 
         jLabel9.setText("Total");
 
-        jLabel10.setText("Cifra Subtotal");
+        subtotalLabel.setText("Cifra Subtotal");
 
-        jLabel11.setText("Cifra IVA");
+        IVALabel.setText("Cifra IVA");
 
-        jLabel12.setText("Cifra Total");
+        totalLabel.setText("Cifra Total");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,7 +157,7 @@ public class COTMainView extends javax.swing.JFrame {
                                         .addComponent(jLabel4))
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel5))
+                                .addComponent(dateLabel))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(8, 8, 8)
@@ -170,9 +177,9 @@ public class COTMainView extends javax.swing.JFrame {
                                     .addComponent(jLabel9))
                                 .addGap(34, 34, 34)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10))))
+                                    .addComponent(totalLabel)
+                                    .addComponent(IVALabel)
+                                    .addComponent(subtotalLabel))))
                         .addGap(0, 58, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -183,7 +190,7 @@ public class COTMainView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5)
+                    .addComponent(dateLabel)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -202,15 +209,15 @@ public class COTMainView extends javax.swing.JFrame {
                     .addComponent(cancelButton)
                     .addComponent(printButton)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel10))
+                    .addComponent(subtotalLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel11))
+                    .addComponent(IVALabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel12))
+                    .addComponent(totalLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -268,15 +275,13 @@ public class COTMainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable COTTable;
+    private javax.swing.JLabel IVALabel;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -287,5 +292,7 @@ public class COTMainView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JButton printButton;
+    private javax.swing.JLabel subtotalLabel;
+    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }
