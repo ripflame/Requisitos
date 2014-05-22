@@ -7,7 +7,6 @@
 package com.requirements.COT;
 
 import com.requirements.models.COTMainViewTableModel;
-import java.util.Date;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
