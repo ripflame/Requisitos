@@ -14,11 +14,16 @@ import javax.swing.table.AbstractTableModel;
  */
 public class COTMainViewTableModel extends AbstractTableModel {
 
-    private String[] columnNames = {"Cantidad", "Descripción", "Precio Unitario", "Importe"};
+    private String[] columnNames = {"Cantidad", "Servicio o Refacción", "Precio Unitario", "Importe"};
     private ArrayList list;
 
     public COTMainViewTableModel() {
         this.list = new ArrayList();
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) { // custom isCellEditable function
+       return true;
     }
 
     @Override
@@ -67,7 +72,7 @@ public class COTMainViewTableModel extends AbstractTableModel {
 
     public void addToList() {
         COTData itemToAdd = new COTData();
-        itemToAdd.setDescription("Descripción");
+        itemToAdd.setDescription("Cambio de aceite");
         itemToAdd.setUnitPrice("$668.50");
         itemToAdd.setQty("2");
         itemToAdd.setSubtotal("$1337.00");
