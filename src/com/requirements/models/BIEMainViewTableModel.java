@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class BIEMainViewTableModel extends AbstractTableModel {
     
-    private String[] columnNames = {"Descripción", "Hora", "+/-", "Cantidad"};
+    private String[] columnNames = {"Descripción", "Hora", "Cantidad"};
     private ArrayList list;
 
     public BIEMainViewTableModel() {
@@ -48,9 +48,6 @@ public class BIEMainViewTableModel extends AbstractTableModel {
                 value = item.getTime();
                 break;
             case 2:
-                value = item.getPlus();
-                break;
-            case 3:
                 value = item.getQty();
                 break;
         }
@@ -68,7 +65,6 @@ public class BIEMainViewTableModel extends AbstractTableModel {
     public void addToList(String description, String time, String Qty) {
         BIEData itemToAdd = new BIEData();
         itemToAdd.setDescription(description);
-        itemToAdd.setPlus("+");
         itemToAdd.setQty(Qty);
         itemToAdd.setTime(time);
         this.list.add(itemToAdd);

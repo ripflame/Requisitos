@@ -13,7 +13,6 @@ public class BIEData {
 
     private String description;
     private String time;
-    private String plus;
     private String qty;
 
     /**
@@ -42,20 +41,6 @@ public class BIEData {
      */
     public void setTime(String time) {
         this.time = time;
-    }
-
-    /**
-     * @return the plus
-     */
-    public String getPlus() {
-        return plus;
-    }
-
-    /**
-     * @param plus the plus to set
-     */
-    public void setPlus(String plus) {
-        this.plus = plus;
     }
 
     /**

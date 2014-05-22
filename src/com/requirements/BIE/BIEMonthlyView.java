@@ -6,6 +6,8 @@
 
 package com.requirements.BIE;
 
+import com.requirements.models.BIEData;
+import com.requirements.models.BIEMainViewTableModel;
 import javax.swing.JFrame;
 
 /**
@@ -14,12 +16,14 @@ import javax.swing.JFrame;
  */
 public class BIEMonthlyView extends javax.swing.JFrame {
 
+    private BIEMainViewTableModel tableModel;
     /**
      * Creates new form BIEMonthlyView
      */
     public BIEMonthlyView() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        btnAfterActionPerformed(null);
     }
 
     /**
@@ -32,15 +36,16 @@ public class BIEMonthlyView extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        tblRecords = new javax.swing.JTable();
+        btnBefore = new javax.swing.JButton();
+        btnAfter = new javax.swing.JButton();
+        lblMonth = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        lblBalance = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblRecords.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,13 +56,23 @@ public class BIEMonthlyView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblRecords);
 
-        jButton1.setText("Anterior");
+        btnBefore.setText("Anterior");
+        btnBefore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBeforeActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Siguiente");
+        btnAfter.setText("Siguiente");
+        btnAfter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAfterActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Mes que se muestra");
+        lblMonth.setText("Mayo");
 
         jButton3.setText("Cerrar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +80,8 @@ public class BIEMonthlyView extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        lblBalance.setText("Balance:$50000");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,11 +96,13 @@ public class BIEMonthlyView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnBefore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnAfter)
                         .addGap(44, 44, 44)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblMonth)
+                        .addGap(89, 89, 89)
+                        .addComponent(lblBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,9 +110,10 @@ public class BIEMonthlyView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel1))
+                    .addComponent(btnBefore)
+                    .addComponent(btnAfter)
+                    .addComponent(lblMonth)
+                    .addComponent(lblBalance))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,13 +130,40 @@ public class BIEMonthlyView extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnBeforeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeforeActionPerformed
+        // TODO add your handling code here:
+        this.tableModel = new BIEMainViewTableModel();
+        this.lblBalance.setText("Balance: $50000");
+        this.tableModel.addToList("Deposito del Cliente Gilberto", "Abril 8 18:00", "$15000");
+        this.tableModel.addToList("Deposito del Cliente Ramirez", "Abril 10 12:00", "$45000");
+        this.tableModel.addToList("Deposito del Cliente Canto", "Abril 15 18:00", "$15000");
+        this.tableModel.addToList("Pago a Provedor", "Abril 19 13:00", "-$12000");
+        this.tableModel.addToList("Pago de nominas", "Abril 30 13:00", "-$36000");
+        this.tblRecords.setModel(tableModel);
+        this.tblRecords.updateUI();
+        this.lblMonth.setText("Abril");
+    }//GEN-LAST:event_btnBeforeActionPerformed
+
+    private void btnAfterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfterActionPerformed
+        // TODO add your handling code here:
+        this.tableModel = new BIEMainViewTableModel();
+        this.lblBalance.setText("Balance: $50000");
+        this.tableModel.addToList("Deposito del Cliente Canto", "Mayo 18 18:00", "$15000");
+        this.tableModel.addToList("Pago a Pintores", "Mayo 19 13:00", "-$2000");
+        this.tableModel.addToList("Pago a provedores", "Mayo 20 13:00", "-$4000");
+        this.tblRecords.setModel(tableModel);
+        this.tblRecords.updateUI();
+        this.lblMonth.setText("Mayo");
+    }//GEN-LAST:event_btnAfterActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAfter;
+    private javax.swing.JButton btnBefore;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblBalance;
+    private javax.swing.JLabel lblMonth;
+    private javax.swing.JTable tblRecords;
     // End of variables declaration//GEN-END:variables
 }
