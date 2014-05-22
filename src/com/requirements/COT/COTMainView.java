@@ -7,7 +7,10 @@
 package com.requirements.COT;
 
 import com.requirements.models.COTMainViewTableModel;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -25,6 +28,14 @@ public class COTMainView extends javax.swing.JFrame {
         COTMainViewTableModel tableModel = new COTMainViewTableModel();
         tableModel.addToList();
         this.COTTable.setModel(tableModel);
+        TableColumn column = this.COTTable.getColumnModel().getColumn(1);
+        JComboBox comboBox = new JComboBox();
+        comboBox.addItem("Cambio de aceite");
+        comboBox.addItem("Afinación");
+        comboBox.addItem("Llanta");
+        comboBox.addItem("Bujía");
+        column.setCellEditor(new DefaultCellEditor(comboBox));
+        
     }
 
     /**
