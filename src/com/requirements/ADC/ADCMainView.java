@@ -39,6 +39,7 @@ public class ADCMainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txfRFC.setText("CAAE9110182E0");
         txfRFC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfRFCActionPerformed(evt);
@@ -126,9 +127,10 @@ public class ADCMainView extends javax.swing.JFrame {
         {
             
         }
-        else if(this.txfSocialName.getText().equals("CAAE9110182E0"))
+        else if(this.txfRFC.getText().equals("CAAE9110182E0"))
         {
-            
+            ADCShowClient showClient = new ADCShowClient();
+            showClient.setVisible(true);
         }
         else if(JOptionPane.showConfirmDialog(null, "El cliente no existe. ¿Desea registrarlo?", "Confirmación", JOptionPane.OK_CANCEL_OPTION) == 0)
         {
