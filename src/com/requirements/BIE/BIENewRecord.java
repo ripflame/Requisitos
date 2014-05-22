@@ -145,8 +145,15 @@ public class BIENewRecord extends javax.swing.JFrame {
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         if(JOptionPane.showConfirmDialog(null, "¿Es correcto este registro?", "Confirmación", JOptionPane.OK_CANCEL_OPTION) == 0)
         {
-            Object[] object = {this.txfMount.getText(), this.txaDescription.getText(), new Date()};
-            this.parentView.setDummyData();
+            float mount = Float.parseFloat(this.txfMount.getText());
+            if(!this.recordType)
+            {
+                mount = -1*mount;
+            }
+            
+            Object[] object = {String.valueOf(mount), this.txaDescription.getText(), new Date()};
+            
+            this.parentView.setDummyData(object);
             btnCancelActionPerformed(null);
         }
         else
