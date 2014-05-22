@@ -60,7 +60,7 @@ public class COTMainView extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         COTTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         printButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -102,7 +102,12 @@ public class COTMainView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(COTTable);
 
-        jButton1.setText("Cancelar");
+        cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         printButton.setText("Imprimir");
         printButton.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +160,7 @@ public class COTMainView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(cancelButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(printButton)
                                 .addGap(157, 157, 157)
@@ -194,7 +199,7 @@ public class COTMainView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(cancelButton)
                     .addComponent(printButton)
                     .addComponent(jLabel7)
                     .addComponent(jLabel10))
@@ -220,6 +225,11 @@ public class COTMainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showConfirmDialog(null, "¿Está seguro que desea imprimir?", "Confirmación", JOptionPane.OK_CANCEL_OPTION);
     }//GEN-LAST:event_printButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,7 +268,7 @@ public class COTMainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable COTTable;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
