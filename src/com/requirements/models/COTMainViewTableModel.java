@@ -33,7 +33,7 @@ public class COTMainViewTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return list.size();
+        return this.list.size();
     }
 
     @Override
