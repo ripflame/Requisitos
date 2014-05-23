@@ -6,7 +6,11 @@
 
 package com.requirements.CPC;
 
+import com.requirements.models.CPCData;
+import com.requirements.models.CPCMainViewTableModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 
 /**
  *
@@ -14,12 +18,35 @@ import javax.swing.JFrame;
  */
 public class CPCMainView extends javax.swing.JFrame {
 
+    private CPCMainViewTableModel model;
+
     /**
      * Creates new form CPCMainView
      */
     public CPCMainView() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        this.model = new CPCMainViewTableModel();
+        this.CPCMainViewTable.setModel(this.model);
+        this.CPCMainViewTable.setSelectionMode(SINGLE_SELECTION);
+    }
+
+    public void addItem(CPCData item) {
+        this.model.addToList(item);
+        this.CPCMainViewTable.setModel(this.model);
+        this.CPCMainViewTable.updateUI();
+        JOptionPane.showMessageDialog(this, "Se ha guardado con éxito el registro", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void updateUI() {
+        this.CPCMainViewTable.setModel(this.model);
+        this.CPCMainViewTable.updateUI();
+    }
+
+    public void removeItem(int index) {
+        this.model.getList().remove(index);
+        this.updateUI();
     }
 
     /**
@@ -33,15 +60,17 @@ public class CPCMainView extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        CPCMainViewTable = new javax.swing.JTable();
+        newButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
+        payedButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Cobros Pendientes");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        CPCMainViewTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -52,31 +81,56 @@ public class CPCMainView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(CPCMainViewTable);
 
-        jButton1.setText("Nuevo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        newButton.setText("Nuevo");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                newButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cerrar");
+        closeButton.setText("Cerrar");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+
+        payedButton.setText("Pagado");
+        payedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payedButtonActionPerformed(evt);
+            }
+        });
+
+        editButton.setText("Editar");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(552, Short.MAX_VALUE)
+                .addComponent(closeButton)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)))))
+                        .addComponent(newButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(payedButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editButton))
+                    .addComponent(jLabel1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,21 +138,47 @@ public class CPCMainView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newButton)
+                    .addComponent(payedButton)
+                    .addComponent(editButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(closeButton)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        CPCNewView newView = new CPCNewView(this, false);
+        newView.setVisible(true);
+    }//GEN-LAST:event_newButtonActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void payedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payedButtonActionPerformed
+        // TODO add your handling code here:
+        CPCData selected = (CPCData)this.model.getValueAt(this.CPCMainViewTable.getSelectedRow());
+        selected.setStatus("Pagado");
+//        this.CPCMainViewTable.setModel(this.model);
+        this.CPCMainViewTable.updateUI();
+    }//GEN-LAST:event_payedButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+        CPCNewView newView = new CPCNewView(this, true);
+        CPCData selected = (CPCData)this.model.getValueAt(this.CPCMainViewTable.getSelectedRow());
+        newView.setItem(selected);
+        newView.setIndex(this.CPCMainViewTable.getSelectedRow());
+        newView.setVisible(true);
+    }//GEN-LAST:event_editButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,10 +216,12 @@ public class CPCMainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable CPCMainViewTable;
+    private javax.swing.JButton closeButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton newButton;
+    private javax.swing.JButton payedButton;
     // End of variables declaration//GEN-END:variables
 }
