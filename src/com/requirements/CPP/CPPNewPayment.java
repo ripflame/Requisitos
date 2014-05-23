@@ -57,7 +57,7 @@ public class CPPNewPayment extends javax.swing.JFrame {
 
         jLabel6.setText("Fecha de Pago");
 
-        lblActualDate.setText("Fecha Actual");
+        lblActualDate.setText("23 de Mayo de 2014");
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

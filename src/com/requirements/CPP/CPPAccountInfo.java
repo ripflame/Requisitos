@@ -6,6 +6,8 @@
 
 package com.requirements.CPP;
 
+import com.requirements.models.CPPData;
+import com.requirements.models.CPPMainViewTableModel;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -15,6 +17,7 @@ import javax.swing.JOptionPane;
  * @author keduardo
  */
 public class CPPAccountInfo extends javax.swing.JFrame {
+    private final CPPMainViewTableModel model;
 
     /**
      * Creates new form CPPAccountInfo
@@ -22,6 +25,24 @@ public class CPPAccountInfo extends javax.swing.JFrame {
     public CPPAccountInfo() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        model = new CPPMainViewTableModel();
+        
+        CPPData item1 = new CPPData();
+        item1.setPayDay("15 de marzo ");
+        item1.setPayNumber("1");
+        
+        CPPData item2 = new CPPData();
+        item2.setPayDay("15 de Abril ");
+        item2.setPayNumber("2");
+        
+        CPPData item3 = new CPPData();
+        item3.setPayDay("15 de Mayo ");
+        item3.setPayNumber("3");
+        
+        model.addToList(item1);
+        model.addToList(item2);
+        model.addToList(item3);
+        this.tblAccountInfo.setModel(model);
     }
 
     /**
@@ -42,7 +63,7 @@ public class CPPAccountInfo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAccountInfo = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -67,7 +88,7 @@ public class CPPAccountInfo extends javax.swing.JFrame {
 
         jLabel8.setText("3 de 12");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAccountInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -78,7 +99,7 @@ public class CPPAccountInfo extends javax.swing.JFrame {
                 "Numero de Pago", "Fecha"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblAccountInfo);
 
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +208,9 @@ public class CPPAccountInfo extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        CPPNewPayment payment = new CPPNewPayment();
+        payment.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -248,6 +272,6 @@ public class CPPAccountInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblAccountInfo;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,8 @@
 
 package com.requirements.CPP;
 
+import com.requirements.models.CPPData;
+import com.requirements.models.CPPMainViewTableModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -14,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author keduardo
  */
 public class CPPMainView extends javax.swing.JFrame {
-
+    private CPPMainViewTableModel model;
     /**
      * Creates new form CPPMainView
      */
@@ -48,6 +50,8 @@ public class CPPMainView extends javax.swing.JFrame {
         jLabel2.setText("RFC");
 
         jLabel3.setText("Razón Social");
+
+        txfRFC.setText("CAAE9110182E0");
 
         btnRegisterNewAccount.setText("Registrar Nva Cuenta");
         btnRegisterNewAccount.addActionListener(new java.awt.event.ActionListener() {
@@ -141,11 +145,13 @@ public class CPPMainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.txfSocialName.getText().equals("Eduardo"))
         {
-            
+            CPPAccountInfo info = new CPPAccountInfo();
+            info.setVisible(true);
         }
         else if(this.txfRFC.getText().equals("CAAE9110182E0"))
         {
-            
+            CPPAccountInfo info = new CPPAccountInfo();
+            info.setVisible(true);
         }
         else if(JOptionPane.showConfirmDialog(null, "La cuenta no existe. ¿Desea crearla?", "Confirmación", JOptionPane.OK_CANCEL_OPTION) == 0)
         {
