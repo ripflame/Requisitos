@@ -34,19 +34,12 @@ public class CPCMainView extends javax.swing.JFrame {
 
     public void addItem(CPCData item) {
         this.model.addToList(item);
-        this.CPCMainViewTable.setModel(this.model);
-        this.CPCMainViewTable.updateUI();
+        this.updateUI();
         JOptionPane.showMessageDialog(this, "Se ha guardado con éxito el registro", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void updateUI() {
-        this.CPCMainViewTable.setModel(this.model);
         this.CPCMainViewTable.updateUI();
-    }
-
-    public void removeItem(int index) {
-        this.model.getList().remove(index);
-        this.updateUI();
     }
 
     /**
@@ -167,8 +160,7 @@ public class CPCMainView extends javax.swing.JFrame {
         // TODO add your handling code here:
         CPCData selected = (CPCData)this.model.getValueAt(this.CPCMainViewTable.getSelectedRow());
         selected.setStatus("Pagado");
-//        this.CPCMainViewTable.setModel(this.model);
-        this.CPCMainViewTable.updateUI();
+        this.updateUI();
     }//GEN-LAST:event_payedButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -176,7 +168,6 @@ public class CPCMainView extends javax.swing.JFrame {
         CPCNewView newView = new CPCNewView(this, true);
         CPCData selected = (CPCData)this.model.getValueAt(this.CPCMainViewTable.getSelectedRow());
         newView.setItem(selected);
-        newView.setIndex(this.CPCMainViewTable.getSelectedRow());
         newView.setVisible(true);
     }//GEN-LAST:event_editButtonActionPerformed
 
