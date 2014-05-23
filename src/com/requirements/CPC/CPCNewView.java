@@ -22,7 +22,6 @@ public class CPCNewView extends javax.swing.JFrame {
     private CPCMainView parent;
     private boolean isEditOperation;
     private CPCData item;
-    private int index;
 
     /** Creates new form CPCNewView */
     public CPCNewView() {
@@ -178,17 +177,6 @@ public class CPCNewView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CPCNewView().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountField;
     private javax.swing.JButton cancelButton;
@@ -217,25 +205,11 @@ public class CPCNewView extends javax.swing.JFrame {
      */
     public void setItem(CPCData item) {
         this.item = item;
-        this.companyField.setText(item.getDescription());
+        this.companyField.setText(item.getCompany());
         this.descriptionField.setText(item.getDescription());
         this.dateField.setText(item.getPaymentDate());
         this.phoneNumberField.setText(item.getPhoneNumber());
         this.amountField.setText(item.getAmount());
-    }
-
-    /**
-     * @return the index
-     */
-    public int getIndex() {
-        return index;
-    }
-
-    /**
-     * @param index the index to set
-     */
-    public void setIndex(int index) {
-        this.index = index;
     }
 
 }
